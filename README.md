@@ -35,7 +35,7 @@ podB: 10.131.0.18
 
 ```yaml
 podA: / eth0
-ovs-bridge: 16 / 19(0x13)
+ovs-bridge: port 16 / port 19 (0x13)
 podB: eth0 /
 ```
 
@@ -72,5 +72,54 @@ Table 70:
 Table 80:
     priority=50
     reg1=0xc888a8
+    actions=output:NXM_NX_REG2[]
+```
+
+# 網路實現: Node 到 local Pod
+
+## 環境配置
+
+```yaml
+pod: 10.131.0.15 (Node:10.250.133.44)
+```
+
+## 流量進出架構
+
+以 `where: in/out` 表示
+
+```yaml
+node: / tun0
+ovs-bridge: port 2 / port 16
+pod: eth0 /
+```
+
+## node routeTable 設置
+
+```yaml
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.128.0.0      0.0.0.0         255.252.0.0     U     0      0        0 tun0
+```
+
+## ovs-bridge 設置
+
+```yaml
+OFPST_PORT_DESC reply (OF1.3) (xid=0x3):
+  2(tun0): addr:22:db:52:3b:f5:8b
+  16(vethf31d7c7b): addr:6e:ba:9e:f1:8f:2f
+```
+
+## ovs-bridge Table 分析
+
+```yaml
+[Table 70]:
+    priority=100,ip
+    nw_dst=10.131.0.15
+    actions:
+        load:0xc888a8->NXM_NX_REG1
+        load:0x10->NXM_NX_REG2
+    goto_table:80
+[Table 80]:
+    priority=50
+    reg1=0xc85a93
     actions=output:NXM_NX_REG2[]
 ```
