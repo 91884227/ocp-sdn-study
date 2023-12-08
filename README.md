@@ -198,3 +198,56 @@ pod-s2: eth0 /
 [Chain]KUBE-SEP-CHWJ3B6W2ZHIFOS3: [Target]DNAT (to 10.131.0.18:8080)
 [Chain]KUBE-SEP-OCJSQJICVLUKUFP2: [Target]DNAT (to 10.131.0.21:8080)
 ```
+
+# Pod to external
+
+## 環境配置
+
+```yaml
+pod: 10.131.0.15
+```
+
+## 流量進出路徑
+
+以 `where: in/out` 表示
+
+```yaml
+pod: / eth0
+ovs-bridge: port 16(vethf31d7c7b) / port 2 (tun0)
+Host: tun0 / ens192
+```
+
+## ovs-bridge Table 分析
+
+```yaml
+Table 00: priority=100,ip
+  actions=goto_table:20
+Table 20: priority=100,ip
+  in_port=16
+  nw_src=10.131.0.15
+  actions=load:0xc888a8->NXM_NX_REG0[],
+  goto_table:27
+Table 27: priority=50
+  reg0=0xc888a8
+  actions=goto_table:30
+Table 30: priority=0
+  actions=goto_table:31
+Table 31: priority=0,ip
+  actions=goto_table:99
+Table 99: priority=0
+  actions=goto_table:100
+Table 100: priority=0
+  actions=goto_table:101
+Table 101: priority=0
+  actions=output:2
+```
+
+## iptable 分析
+
+```yaml
+[Chain]POSTROUTING: [Target]OPENSHIFT-MASQUERADE
+[Chain]OPENSHIFT-MASQUERADE: [Target]OPENSHIFT-MASQUERADE-2(符合 sourceIP = PodIP)
+[Chain]OPENSHIFT-MASQUERADE-2:
+    [Target]RETURN  (符合 destinationIP = PodIP)
+    [Target]MASQUERADE
+```
