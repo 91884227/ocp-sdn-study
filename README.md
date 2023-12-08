@@ -29,7 +29,7 @@ podA: 10.131.0.15
 podB: 10.131.0.18
 ```
 
-## 流量進出架構
+## 流量進出路徑
 
 以 `where: in/out` 表示
 
@@ -83,7 +83,7 @@ Table 80:
 pod: 10.131.0.15 (Node:10.250.133.44)
 ```
 
-## 流量進出架構
+## 流量進出路徑
 
 以 `where: in/out` 表示
 
@@ -122,4 +122,79 @@ OFPST_PORT_DESC reply (OF1.3) (xid=0x3):
     priority=50
     reg1=0xc85a93
     actions=output:NXM_NX_REG2[]
+```
+
+# external traffic 透過 NodePort 到 Pod
+
+## 環境配置
+
+```yaml
+node-port: 30007
+service對應到的pod: 10.128.2.47、10.131.0.77
+service對應到的pod的port: 8080
+```
+
+## iptable 分析
+
+```yaml
+[Chain]PREROUTING: [Target]KUBE-SERVICES
+[Chain]KUBE-SERVICES: [Target]KUBE-NODEPORTS
+[Chain]KUBE-NODEPORTS: [Target]KUBE-EXT-HU4HVRCAUIB5YQHI (符合 tcp dpt:30007)
+[Chain]KUBE-EXT-HU4HVRCAUIB5YQHI: [Target]KUBE-SVC-HU4HVRCAUIB5YQHI
+[Chain]KUBE-SVC-HU4HVRCAUIB5YQHI:
+    [Target]:KUBE-SEP-TKINKZP2A5JDJDZN
+    [Target]:KUBE-SEP-2G7MVSJPPKG6GFCF
+[Chain]KUBE-SEP-TKINKZP2A5JDJDZN: [Target]DNAT (to 10.128.2.47:8080)
+[Chain]KUBE-SEP-2G7MVSJPPKG6GFCF: [Target]DNAT (to:10.131.0.77:8080)
+```
+
+# Pod 到 Service
+
+## 環境配置
+
+```yaml
+pod: 10.131.0.15 (Node:10.250.133.44)
+service: httpd-service (172.30.100.234)
+    pod-s1: 10.128.2.43 (Node:10.250.133.45)
+    pod-s2: 10.131.0.21 (Node:10.250.133.44)
+    pod-s3: 10.131.0.18 (Node:10.250.133.44)
+```
+
+## 流量進出路徑
+
+以 `where: in/out` 表示
+
+```yaml
+pod:  / eth0
+ovs-bridge:  port 16(vethf31d7c7b) / port 2(tun0)
+network host: tun0 -> tun0
+    iptable:
+        OUTPUT: 換掉Des (172.30.100.234(service IP) -> 10.131.0.21(pod-s2 IP))
+        POSTROUTING: 換掉Source (10.131.0.15(pod IP) -> 10.250.133.44(Node IP))
+ovs-bridge: 2(tun0) / 22(vethe39b1565)
+pod-s2: eth0 /
+```
+
+## ovs-bridge (port 16 -> port 2)進出分析
+
+```yaml
+[table 31]: priority=100,ip
+  nw_dst=172.30.0.0/16
+  actions=goto_table:60
+[table 60]: priority=200
+  actions=output:2
+```
+
+## iptable 分析
+
+```yaml
+[Chain]OUTPUT: [Target]KUBE-SERVICES
+[Chain]KUBE-SERVICES: [Target]KUBE-SVC-GAUART32FUYN4NZ7 (符合 tcp --dport 80)
+[Chain]KUBE-SVC-GAUART32FUYN4NZ7:
+    [Target]KUBE-SEP-6WMDVDAGBKYAF532
+    [Target]KUBE-SEP-CHWJ3B6W2ZHIFOS3
+    [Target]KUBE-SEP-OCJSQJICVLUKUFP2
+[Chain]KUBE-SEP-6WMDVDAGBKYAF532: [Target]DNAT (to 10.128.2.43:8080)
+[Chain]KUBE-SEP-CHWJ3B6W2ZHIFOS3: [Target]DNAT (to 10.131.0.18:8080)
+[Chain]KUBE-SEP-OCJSQJICVLUKUFP2: [Target]DNAT (to 10.131.0.21:8080)
 ```
