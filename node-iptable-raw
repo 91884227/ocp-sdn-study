@@ -1,0 +1,12 @@
+# [root@compute0 net]# iptables -t raw --list
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination
+OPENSHIFT-NOTRACK  all  --  anywhere             anywhere             /* disable conntrack for vxlan */
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+OPENSHIFT-NOTRACK  all  --  anywhere             anywhere             /* disable conntrack for vxlan */
+
+Chain OPENSHIFT-NOTRACK (2 references)
+target     prot opt source               destination
+CT         udp  --  anywhere             anywhere             udp dpt:vxlan NOTRACK

@@ -1,0 +1,7 @@
+[root@compute0 ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.250.133.253  0.0.0.0         UG    100    0        0 ens192
+10.128.0.0      0.0.0.0         255.252.0.0     U     0      0        0 tun0
+10.250.133.0    0.0.0.0         255.255.255.0   U     100    0        0 ens192
+172.30.0.0      0.0.0.0         255.255.0.0     U     0      0        0 tun0

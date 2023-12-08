@@ -1,0 +1,13 @@
+sh-4.4$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+3: eth0@if24: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue state UP group default 
+    link/ether 0a:58:0a:83:00:0f brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.131.0.15/23 brd 10.131.1.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::c450:1aff:fe5d:744/64 scope link 
+       valid_lft forever preferred_lft forever

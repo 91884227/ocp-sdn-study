@@ -1,0 +1,96 @@
+# [root@compute0 net]#  iptables -t filter --list
+Chain INPUT (policy ACCEPT)
+target prot opt source destination
+KUBE-PROXY-FIREWALL all -- anywhere anywhere ctstate NEW /_ kubernetes load balancer firewall _/
+KUBE-NODEPORTS all -- anywhere anywhere /_ kubernetes health check service ports _/
+KUBE-EXTERNAL-SERVICES all -- anywhere anywhere ctstate NEW /_ kubernetes externally-visible service portals _/
+KUBE-NODEPORT-NON-LOCAL all -- anywhere anywhere /_ Ensure that non-local NodePort traffic can flow _/
+OPENSHIFT-FIREWALL-ALLOW all -- anywhere anywhere /_ firewall overrides _/
+KUBE-FIREWALL all -- anywhere anywhere
+
+Chain FORWARD (policy ACCEPT)
+target prot opt source destination
+KUBE-PROXY-FIREWALL all -- anywhere anywhere ctstate NEW /_ kubernetes load balancer firewall _/
+KUBE-FORWARD all -- anywhere anywhere /_ kubernetes forwarding rules _/
+KUBE-SERVICES all -- anywhere anywhere ctstate NEW /_ kubernetes service portals _/
+KUBE-EXTERNAL-SERVICES all -- anywhere anywhere ctstate NEW /_ kubernetes externally-visible service portals _/
+OPENSHIFT-ADMIN-OUTPUT-RULES all -- anywhere anywhere /_ administrator overrides _/
+OPENSHIFT-FIREWALL-FORWARD all -- anywhere anywhere /_ firewall overrides _/
+OPENSHIFT-BLOCK-OUTPUT all -- anywhere anywhere /_ firewall overrides _/
+
+Chain OUTPUT (policy ACCEPT)
+target prot opt source destination
+KUBE-PROXY-FIREWALL all -- anywhere anywhere ctstate NEW /_ kubernetes load balancer firewall _/
+KUBE-SERVICES all -- anywhere anywhere ctstate NEW /_ kubernetes service portals _/
+OPENSHIFT-BLOCK-OUTPUT all -- anywhere anywhere /_ firewall overrides _/
+KUBE-FIREWALL all -- anywhere anywhere
+
+Chain KUBE-FIREWALL (2 references)
+target prot opt source destination
+DROP all -- !127.0.0.0/8 127.0.0.0/8 /_ block incoming localnet connections _/ ! ctstate RELATED,ESTABLISHED,DNAT
+DROP all -- anywhere anywhere /_ kubernetes firewall for dropping marked packets _/ mark match 0x8000/0x8000
+
+Chain KUBE-KUBELET-CANARY (0 references)
+target prot opt source destination
+
+Chain OPENSHIFT-BLOCK-OUTPUT (2 references)
+target prot opt source destination
+REJECT tcp -- anywhere anywhere tcp dpt:22623 flags:FIN,SYN,RST,ACK/SYN reject-with icmp-port-unreachable
+REJECT tcp -- anywhere anywhere tcp dpt:22624 flags:FIN,SYN,RST,ACK/SYN reject-with icmp-port-unreachable
+
+Chain OPENSHIFT-FIREWALL-FORWARD (1 references)
+target prot opt source destination
+DROP all -- 10.128.0.0/14 anywhere /_ attempted resend after connection close _/ ctstate INVALID
+ACCEPT all -- anywhere 10.128.0.0/14 /_ forward traffic from SDN _/
+ACCEPT all -- 10.128.0.0/14 anywhere /_ forward traffic to SDN _/
+
+Chain OPENSHIFT-ADMIN-OUTPUT-RULES (1 references)
+target prot opt source destination
+
+Chain OPENSHIFT-FIREWALL-ALLOW (1 references)
+target prot opt source destination
+ACCEPT udp -- anywhere anywhere udp dpt:vxlan /_ VXLAN incoming _/
+ACCEPT all -- anywhere anywhere /_ from SDN to localhost _/
+
+Chain KUBE-PROXY-CANARY (0 references)
+target prot opt source destination
+
+Chain KUBE-NODEPORT-NON-LOCAL (1 references)
+target prot opt source destination
+
+Chain KUBE-EXTERNAL-SERVICES (2 references)
+target prot opt source destination
+REJECT tcp -- anywhere anywhere /_ jack-test/nginx-service has no endpoints _/ ADDRTYPE match dst-type LOCAL tcp dpt:31721 reject-with icmp-port-unreachable
+REJECT tcp -- anywhere anywhere /_ nginx-example/my-nginx has no endpoints _/ ADDRTYPE match dst-type LOCAL tcp dpt:32141 reject-with icmp-port-unreachable
+REJECT tcp -- anywhere anywhere /_ argocd/argocd-nodeport-test-server:http has no endpoints _/ ADDRTYPE match dst-type LOCAL tcp dpt:30447 reject-with icmp-port-unreachable
+REJECT tcp -- anywhere anywhere /_ argocd/argocd-nodeport-test-server:https has no endpoints _/ ADDRTYPE match dst-type LOCAL tcp dpt:32020 reject-with icmp-port-unreachable
+
+Chain KUBE-NODEPORTS (1 references)
+target prot opt source destination
+
+Chain KUBE-SERVICES (2 references)
+target prot opt source destination
+REJECT tcp -- anywhere 172.30.230.239 /_ openshift-machine-api/machine-api-controllers:machine-mtrc has no endpoints _/ tcp dpt:8441 reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.161.46 /_ william-cloudbee/cjoc:jnlp has no endpoints _/ tcp dpt:50000 reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.129.248 /_ jack-test/nginx-service has no endpoints _/ tcp dpt:http reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.230.239 /_ openshift-machine-api/machine-api-controllers:mhc-mtrc has no endpoints _/ tcp dpt:pcsync-http reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.109.90 /_ nginx-example/my-nginx has no endpoints _/ tcp dpt:http reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.161.46 /_ william-cloudbee/cjoc:http has no endpoints _/ tcp dpt:http reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.53.162 /_ argocd/argocd-nodeport-test-server:http has no endpoints _/ tcp dpt:http reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.171.195 /_ rex-lab/nginx-unprivileged:8080-tcp has no endpoints _/ tcp dpt:webcache reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.230.239 /_ openshift-machine-api/machine-api-controllers:machineset-mtrc has no endpoints _/ tcp dpt:cybro-a-bus reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.54.45 /_ openshift-machine-api/machine-api-operator-webhook:https has no endpoints _/ tcp dpt:https reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.53.162 /_ argocd/argocd-nodeport-test-server:https has no endpoints _/ tcp dpt:https reject-with icmp-port-unreachable
+REJECT tcp -- anywhere 172.30.146.84 /_ openshift-adp/openshift-adp-controller-manager-metrics-service:https has no endpoints _/ tcp dpt:pcsync-https reject-with icmp-port-unreachable
+
+Chain KUBE-FORWARD (1 references)
+target prot opt source destination
+DROP all -- anywhere anywhere ctstate INVALID
+ACCEPT all -- anywhere anywhere /_ kubernetes forwarding rules _/ mark match 0x1/0x1
+ACCEPT all -- anywhere anywhere /_ kubernetes forwarding conntrack rule _/ ctstate RELATED,ESTABLISHED
+
+Chain KUBE-PROXY-FIREWALL (3 references)
+target prot opt source destination
+
+Chain OPENSHIFT-SDN-CANARY (0 references)
+target prot opt source destination

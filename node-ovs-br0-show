@@ -1,0 +1,643 @@
+# [root@compute0 tmp]#  ovs-ofctl -O OpenFlow13 show br0
+OFPT_FEATURES_REPLY (OF1.3) (xid=0x2): dpid:000062f4b8d7ce4d
+n_tables:254, n_buffers:0
+capabilities: FLOW_STATS TABLE_STATS PORT_STATS GROUP_STATS QUEUE_STATS
+OFPST_PORT_DESC reply (OF1.3) (xid=0x3):
+ 1(vxlan0): addr:76:b0:61:1d:82:bd
+     config:     0
+     state:      LIVE
+     speed: 0 Mbps now, 0 Mbps max
+ 2(tun0): addr:22:db:52:3b:f5:8b
+     config:     0
+     state:      LIVE
+     speed: 0 Mbps now, 0 Mbps max
+ 3(veth3d0a3ad9): addr:1a:36:57:d1:83:7f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 4(vethbc6dba82): addr:f6:5a:29:c4:7e:5b
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 5(vethb1ee2524): addr:6a:c1:bd:c6:f8:fc
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 6(veth19c4557a): addr:76:a8:67:a6:ce:6f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 7(veth4577020c): addr:56:d5:d6:82:fa:c2
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 8(veth51266dcb): addr:16:da:bf:89:a1:ec
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 9(vethf444332d): addr:02:aa:47:0f:e6:de
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 10(veth16e79175): addr:92:d6:90:4e:91:dd
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 11(vetha0a9770e): addr:ea:8b:66:78:c2:93
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 12(vethd0542af8): addr:8a:b2:e6:05:2b:79
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 15(vethf8f6dc24): addr:9a:45:be:07:aa:7c
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 16(vethf31d7c7b): addr:6e:ba:9e:f1:8f:2f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 17(vethb90af1f1): addr:26:36:12:9f:93:c6
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 18(vethbf392451): addr:ea:48:9f:03:39:db
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 19(veth04a6afab): addr:e6:ac:a0:f4:ac:b9
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 20(veth0943b9c5): addr:96:2e:52:45:25:52
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 21(veth15bc1773): addr:fe:da:09:10:35:1f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 22(vethe39b1565): addr:32:47:e6:7a:ff:18
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 23(veth05933579): addr:c2:9a:9b:a2:48:71
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 24(veth896bc02f): addr:d2:30:6d:46:69:de
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 25(vetha4c1c85e): addr:ba:0f:8f:f8:d9:fb
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 26(vethcea9ac68): addr:ea:ef:8b:58:5c:a2
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 27(veth924f15b4): addr:d6:ab:65:40:1f:47
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 28(veth78d79b03): addr:66:49:04:3e:61:8d
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 29(vethf249a5ee): addr:46:47:45:d2:1e:6b
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 30(vethec1395f9): addr:76:80:37:0a:2b:0a
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 31(vethc8e81bc0): addr:8a:a6:70:d5:78:be
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 32(vethd491a22e): addr:d6:26:32:be:1f:56
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 33(veth7ac2eaa0): addr:ee:6d:79:4f:b2:f5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 34(vethdca73279): addr:82:9d:e1:4d:ee:1e
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 35(vethef490967): addr:82:9c:63:64:34:fc
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 36(veth9f697174): addr:ba:ec:8c:d1:a0:7a
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 37(veth65fbe64a): addr:fe:e8:d7:d9:c5:15
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 38(veth68c08e3a): addr:52:3d:51:14:9a:b4
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 39(veth21d4cdd5): addr:22:de:28:40:4c:f1
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 40(vethe2e8cec9): addr:72:33:87:0c:cf:71
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 41(veth96210b9c): addr:a2:30:ed:8a:91:c6
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 42(veth446de3da): addr:9a:b5:64:cb:ff:b2
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 43(veth49d88e72): addr:de:dc:d9:f0:39:7e
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 44(veth6e434735): addr:6a:bf:5f:8a:d7:fe
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 45(vethdfdf07ee): addr:b6:0f:d0:ad:53:ed
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 46(vethcfd54a87): addr:2a:66:23:58:89:43
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 47(veth45e2ff53): addr:9e:34:cc:5f:98:a3
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 48(veth3a0ca729): addr:86:3e:fd:79:5e:26
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 49(vethb4cce895): addr:fa:d6:73:b4:c3:3d
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 50(veth783c85aa): addr:e2:19:42:48:25:c5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 51(veth4c8036e0): addr:8e:a5:8e:88:73:fd
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 52(vethc5bb0d64): addr:9e:0b:8c:94:c7:79
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 53(veth88cffc41): addr:f2:4e:a0:c2:d8:f5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 54(veth83f34079): addr:fa:13:f8:bd:3d:e5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 55(vethaaacb6f1): addr:b2:0e:1f:a9:b6:37
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 56(veth3c2a2508): addr:12:33:70:19:a9:c2
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 57(veth5ade4db1): addr:36:55:29:99:d5:b0
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 58(vethb520fb33): addr:f2:90:51:53:ec:f3
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 59(veth02499842): addr:c6:42:e4:bb:74:bf
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 60(veth09867153): addr:2a:43:8e:70:e4:7e
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 61(vethca88e4d4): addr:da:fc:7e:46:21:09
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 62(vethf7ca10e1): addr:aa:5a:a8:30:7a:b2
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 63(veth2ead0af1): addr:c2:eb:f8:f0:f1:3a
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 64(veth2a1eda97): addr:52:29:ea:a5:8e:5e
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 65(vetha567c48a): addr:32:78:10:06:88:22
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 66(veth3d21ec3e): addr:02:7b:06:08:97:ce
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 67(veth85d8a1dc): addr:76:a3:7a:f9:5a:67
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 68(veth076885c7): addr:ce:97:a3:9c:52:b6
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 69(veth6a145258): addr:8a:d3:cb:ac:55:8d
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 70(veth540d67aa): addr:0a:d7:67:22:61:2c
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 71(veth5c20e006): addr:3e:b1:69:0e:b9:20
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 72(vethb8970ddf): addr:a6:b5:88:33:f6:b5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 73(veth6cb96ab2): addr:46:ec:b0:0a:c5:3b
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 74(veth6d05091c): addr:32:6b:ae:ec:16:d4
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 75(veth164ce7b9): addr:7a:83:f4:50:86:64
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 77(vethe0192c19): addr:0a:4e:1c:8c:52:9b
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 78(vethf6f47289): addr:02:d4:10:28:9b:1d
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 79(vethfa3ca410): addr:ea:17:65:d7:9b:7f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 80(vethddcef79f): addr:a6:26:02:c0:d7:45
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 133(veth387408be): addr:fe:21:83:12:27:44
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 134(vethae955b2d): addr:3a:60:bc:7f:41:7c
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 135(veth8286edb4): addr:ca:b3:e6:aa:0e:d5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 136(veth38ec57af): addr:12:e4:a9:ce:98:b0
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 137(veth1643185b): addr:a2:75:13:48:c3:5c
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 138(veth139d5a9a): addr:6e:43:82:03:81:33
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 139(veth6e924c56): addr:5e:88:86:5a:df:ce
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 140(vethc53e64de): addr:5a:98:ee:8f:3a:a5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 141(vethd4ed0452): addr:0e:53:4f:86:eb:f1
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 142(veth5bc38770): addr:0a:2e:fd:4e:df:24
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 143(vethbc934add): addr:a6:29:6e:0a:58:1b
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 144(vetha3dc2228): addr:4a:ad:dd:9c:0f:83
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 145(veth149cdb2d): addr:76:8c:11:64:13:e6
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 146(vetha980321c): addr:ea:d5:aa:9f:4a:b6
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 147(vethff8bd1bb): addr:5a:ea:f6:0a:b2:81
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 148(vetha79e9145): addr:72:8d:a0:03:de:6e
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 149(vethc66751e2): addr:da:9b:2c:7d:17:4f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 150(veth3e6906b7): addr:a6:28:5d:95:fa:42
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 151(veth0ab2d554): addr:a6:ce:99:e6:b1:71
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 152(veth39bc262e): addr:56:cc:2c:8c:c1:8f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 153(veth4029b8aa): addr:7a:b2:f9:2b:d1:f5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 154(veth5148fb23): addr:a6:81:03:ee:f2:e2
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 155(veth4a3d232c): addr:82:66:eb:b8:f9:12
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 156(veth70f6beaf): addr:d2:06:cb:67:77:ef
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 157(vethc3725beb): addr:4a:55:4c:fe:83:1b
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 158(vetha6e2ef37): addr:36:18:10:b4:32:98
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 159(veth5c3b99ad): addr:22:62:2d:35:15:55
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 160(vethb11c5039): addr:8a:e6:aa:ba:22:56
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 161(veth8bfcdc0c): addr:02:c1:64:06:28:0a
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 162(vetha98d736a): addr:ea:44:b3:69:09:4b
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 163(veth30f37f7e): addr:ce:80:39:20:d8:e0
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 164(veth2cf22191): addr:ce:ff:c9:da:e5:48
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 165(veth17ec6ea6): addr:ea:f7:bc:e3:b0:bb
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 166(veth8cffe942): addr:7e:42:45:5a:97:2a
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 167(veth2745dd2a): addr:36:9c:33:68:12:4a
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 168(vetha3cabc49): addr:a6:f1:a3:bb:31:95
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 169(veth15492f31): addr:fe:64:b1:fb:94:87
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 170(vetha2b50269): addr:5a:fe:b1:62:c3:a2
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 171(veth6d724b4f): addr:06:01:2d:77:93:27
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 172(veth3f839db9): addr:9a:9a:f6:42:c3:52
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 173(vethf4c54894): addr:8e:79:c1:2a:89:19
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 174(vethaea8b385): addr:a2:ff:0f:d6:19:e2
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 175(vethc69e649e): addr:0e:87:3f:cd:23:2f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 176(veth16d05aa0): addr:c6:13:23:d8:83:6c
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 177(vethfb5580ec): addr:4a:95:b7:79:6e:b5
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 178(veth1246585d): addr:c6:d5:5a:9d:18:82
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 179(vetha8a6a1e4): addr:f6:8c:f0:d5:00:5f
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 180(veth8eaf9eea): addr:ea:39:52:c0:3c:46
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 181(veth22f6f1ef): addr:be:b4:2d:bb:51:30
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 182(veth1fc2dc51): addr:e2:1a:8e:a0:f0:41
+     config:     0
+     state:      LIVE
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ LOCAL(br0): addr:62:f4:b8:d7:ce:4d
+     config:     PORT_DOWN
+     state:      LINK_DOWN
+     speed: 0 Mbps now, 0 Mbps max
+OFPT_GET_CONFIG_REPLY (OF1.3) (xid=0x9): frags=nx-match miss_send_len=0
